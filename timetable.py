@@ -1,8 +1,8 @@
 import openpyxl
 
 tt = 'timetable.xlsx'
-data = openpyxl.load_workbook(tt)
-sheet = data.active
+wb = openpyxl.load_workbook(tt)
+sheet = wb.active
 
 groups = ["GW01", "GA02", "GĆP02","GĆL03"]
 
@@ -19,8 +19,39 @@ for i in range(4):
             defs[i].append(row)
 
 
-for row in GP:
-    #row[2].value=row[2].value[:10]
-    print(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + row[5].value + ",,,,")
+GWF = open("GW.csv", "w")
 
+if GWF.writable():
+    GWF.write("Subject,Start Date,Start Time,End Date,End Time,Description,Location,,,,\n")
+    for row in GW:
+        #row[2].value=row[2].value[:10]
+        GWF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + row[5].value + ",,,,\n")
 
+GWF.close()
+
+GAF = open("GA.csv", "w")
+
+if GAF.writable():
+    GAF.write("Subject,Start Date,Start Time,End Date,End Time,Description,Location,,,,\n")
+    for row in GA:
+        GAF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + row[5].value + ",,,,\n")
+
+GAF.close()
+
+GPF = open("GP.csv", "w")
+
+if GPF.writable():
+    GPF.write("Subject,Start Date,Start Time,End Date,End Time,Description,Location,,,,\n")
+    for row in GP:
+        GPF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + row[5].value + ",,,,\n")
+
+GPF.close()
+
+GLF = open("GL.csv", "w")
+
+if GLF.writable():
+    GLF.write("Subject,Start Date,Start Time,End Date,End Time,Description,Location,,,,\n")
+    for row in GL:
+        GLF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + row[5].value + ",,,,\n")
+
+GLF.close()
