@@ -13,10 +13,21 @@ GP=[]
 GL=[]
 defs = [GW,GA,GP,GL]
 
+elrn= {"ABC ABC": "TEAMS", "DCE DCE": "UPEL"}
+
 for i in range(4):
     for row in sheet.rows:
         if(row[9].value==groups[i]):
             defs[i].append(row)
+
+
+def room(place, teacher):
+    if(place=="WIMiIP on-line"):
+        for prsn in elrn:
+            if prsn == teacher:
+                return elrn[prsn]
+    return place
+        
 
 
 GWF = open("GW.csv", "w")
@@ -24,8 +35,7 @@ GWF = open("GW.csv", "w")
 if GWF.writable():
     GWF.write("Subject,Start Date,Start Time,End Date,End Time,Description,Location,,,,\n")
     for row in GW:
-        #row[2].value=row[2].value[:10]
-        GWF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + row[5].value + ",,,,\n")
+        GWF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + room(row[5].value, row[1].value) + ",,,,\n")
 
 GWF.close()
 
@@ -34,7 +44,7 @@ GAF = open("GA.csv", "w")
 if GAF.writable():
     GAF.write("Subject,Start Date,Start Time,End Date,End Time,Description,Location,,,,\n")
     for row in GA:
-        GAF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + row[5].value + ",,,,\n")
+        GAF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + room(row[5].value, row[1].value) + ",,,,\n")
 
 GAF.close()
 
@@ -43,7 +53,7 @@ GPF = open("GP.csv", "w")
 if GPF.writable():
     GPF.write("Subject,Start Date,Start Time,End Date,End Time,Description,Location,,,,\n")
     for row in GP:
-        GPF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + row[5].value + ",,,,\n")
+        GPF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + room(row[5].value, row[1].value) + ",,,,\n")
 
 GPF.close()
 
@@ -52,6 +62,8 @@ GLF = open("GL.csv", "w")
 if GLF.writable():
     GLF.write("Subject,Start Date,Start Time,End Date,End Time,Description,Location,,,,\n")
     for row in GL:
-        GLF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + row[5].value + ",,,,\n")
+        GLF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + room(row[5].value, row[1].value) + ",,,,\n")
 
 GLF.close()
+
+
