@@ -1,4 +1,5 @@
 import openpyxl
+import datetime
 
 tt = 'timetable.xlsx'
 wb = openpyxl.load_workbook(tt)
@@ -67,3 +68,15 @@ if GLF.writable():
 GLF.close()
 
 
+#other activities generator
+
+GE = open("GE.csv", "w")
+GEcounter = 15
+deltadays=datetime.timedelta(0)
+startdate=datetime.date(2021, 3, 1)
+if GE.writable():
+    GE.write("Subject,Start Date,Start Time,End Date,End Time,Description,Location,,,,\n")
+    while GEcounter>0:
+        GE.write("EXAMPLE SUBJECT,"+(str)(startdate+deltadays)+","+"16:00:00"+","+(str)(startdate+deltadays)+","+"17:30:00"+","+"EXAMPLE TEACHER"+","+"ONLINE"+",,,,\n")
+        deltadays=deltadays+datetime.timedelta(7)
+        GEcounter=GEcounter-1
