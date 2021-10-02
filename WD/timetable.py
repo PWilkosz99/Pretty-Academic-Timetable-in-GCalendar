@@ -16,7 +16,8 @@ GSL=[]
 defs = [GW,GA,GP,GL,GSL]
 
 
-elrn= {"ABC ABC": "TEAMS", "DCE DCE": "UPEL"}
+
+elrn= {"Beata Dubiel": "TEAMS", "Łukasz Madej": "UPEL", "Mateusz Mojżeszko": "TEAMS&UPEL", "Izabela Olejarczyk-Wożeńska": "UPEL", "Danuta Szeliga": "UPEL", "Jan Bielański": "UPEL", "Lucyna Hajder":"TEAMS&UPEL", "Krzysztof Banaś":"TEAMS", "Łukasz Rauch":"UPEL"}
 
 for i in range(5):
     for row in sheet.rows:
@@ -38,7 +39,7 @@ GWF = open("GW.csv", "w")
 if GWF.writable():
     GWF.write("Subject,Start Date,Start Time,End Date,End Time,Description,Location,,,,\n")
     for row in GW:
-        GWF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + room(row[5].value, row[1].value) + ",,,,\n")
+        GWF.write(row[0].value + "," + row[2].value[:10] + "," + str(row[3].value) + "," + row[2].value[:10] + "," + str(row[4].value) + "," + row[1].value + "," + row[+" "+ + ",,,,\n")
 
 GWF.close()
 
@@ -94,7 +95,7 @@ startdate=datetime.date(2021, 3, 1)
 if GE.writable():
     GE.write("Subject,Start Date,Start Time,End Date,End Time,Description,Location,,,,\n")
     while GEcounter>0:
-        GE.write("EXAMPLE SUBJECT,"+(str)(startdate+deltadays)+","+"16:00:00"+","+(str)(startdate+deltadays)+","+"17:30:00"+","+"EXAMPLE TEACHER"+","+"ONLINE"+",,,,\n")
+        GE.write("Język Angielski,"+(str)(startdate+deltadays)+","+"18:00:00"+","+(str)(startdate+deltadays)+","+"19:30:00"+","+"Elżbieta Suszańska-Brzezicka"+","+"TEAMS"+",,,,\n")
         if(GEcounter%2==0):
             deltadays=deltadays+datetime.timedelta(2)
         else:
