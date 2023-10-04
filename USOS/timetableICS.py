@@ -2,7 +2,7 @@ import csv
 
 def write_csv(filename, data):
     with open(filename, mode='w', encoding="utf-8", newline='') as file:
-        writer = csv.writer(file, delimiter=';')
+        writer = csv.writer(file, delimiter=',')
         writer.writerow(["Subject", "Start Date", "Start Time", "End Date", "End Time", "Description", "Location"])
         for row in data:
             writer.writerow([row[3], row[7], str(row[8]), row[7], str(row[9]), row[6], loc(row)])
