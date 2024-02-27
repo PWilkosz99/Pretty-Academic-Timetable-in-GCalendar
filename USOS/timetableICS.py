@@ -1,11 +1,14 @@
 import csv
 
+timetable_file = "timetable3isi-1.csv"
+
 def write_csv(filename, data):
-    with open(filename, mode='w', encoding="utf-8", newline='') as file:
-        writer = csv.writer(file, delimiter=',')
-        writer.writerow(["Subject", "Start Date", "Start Time", "End Date", "End Time", "Description", "Location"])
-        for row in data:
-            writer.writerow([row[3], row[7], str(row[8]), row[7], str(row[9]), row[6], loc(row)])
+    if(len(data) > 0):
+        with open(filename, mode='w', encoding="utf-8", newline='') as file:
+            writer = csv.writer(file, delimiter=',')
+            writer.writerow(["Subject", "Start Date", "Start Time", "End Date", "End Time", "Description", "Location"])
+            for row in data:
+                writer.writerow([row[3], row[7], str(row[8]), row[7], str(row[9]), row[6], loc(row)])
 
 def loc(rr):
     if(rr[11] == "online" or rr[11] == "on-line"):
@@ -13,7 +16,7 @@ def loc(rr):
     else:
         return rr[10]+" - "+rr[11]
 
-with open('timetable_2.csv', mode='r', encoding="utf-8") as source:
+with open(timetable_file, mode='r', encoding="utf-8") as source:
 
     GW = []
     GA = []
@@ -23,6 +26,7 @@ with open('timetable_2.csv', mode='r', encoding="utf-8") as source:
     GWA = []
     GK = []
     GLC = []
+    GS = []
 
     csv_reader = csv.reader(source, delimiter=';')
     next(csv_reader, None)
@@ -34,7 +38,8 @@ with open('timetable_2.csv', mode='r', encoding="utf-8") as source:
         "ćwiczenia laboratoryjne": GL,
         "zajęcia warsztatowe": GWA,
         "konwersatorium": GK,
-        "lektorat": GLC
+        "lektorat": GLC,
+        "zajęcia seminaryjne": GS,
     }
 
     for row in csv_reader:
@@ -51,3 +56,4 @@ write_csv("GWA.csv", GWA)
 write_csv("GA.csv", GA)
 write_csv("GK.csv", GK)
 write_csv("GLC.csv", GLC)
+write_csv("GS.csv", GS)
